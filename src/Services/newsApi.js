@@ -7,7 +7,7 @@ export const getNews = async (params = {}) => {
     const cacheKey = `news-${params.category || 'general'}`;
     const cachedData = localStorage.getItem(cacheKey)
 
-    if(cachedData){
+    if (cachedData) {
         return JSON.parse(cachedData)
     }
 
@@ -19,9 +19,9 @@ export const getNews = async (params = {}) => {
             },
         });
 
-        const articles = JSON.parse(result.data.contents).articles;
-        localStorage.setItem(cacheKey , JSON.stringify(articles))
-        return articles;
+        const result = JSON.parse(response.data.contents);
+        localStorage.setItem(cacheKey, JSON.stringify(result.articles));
+        return result.articles;
     } catch (err) {
         console.log('Error:', err);
         return [];
