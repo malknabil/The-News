@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API_KEY = 'f56acf1f297e4169a052d27496d8a861';
-const BASE_URL = 'https://newsapi.org/v2/top-headlines';
+const BASE_URL = 'https://api.allorigins.win/get?url=https://newsapi.org/v2/top-headlines';
 
 export const getNews = async (params = {}) => {
     const cacheKey = `news-${params.category || 'general'}`;
@@ -19,8 +19,9 @@ export const getNews = async (params = {}) => {
             },
         });
 
-        localStorage.setItem(cacheKey , JSON.stringify(response.data.articles))
-        return response.data.articles;
+        const articles = JSON.parse(result.data.contents).articles;
+        localStorage.setItem(cacheKey , JSON.stringify(articles))
+        return articles;
     } catch (err) {
         console.log('Error:', err);
         return [];
