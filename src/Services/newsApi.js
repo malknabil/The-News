@@ -19,9 +19,14 @@ export const getNews = async (params = {}) => {
             },
         });
 
-        const result = JSON.parse(response.data.contents);
-        localStorage.setItem(cacheKey, JSON.stringify(result.articles));
-        return result.articles;
+        if (result && result.articles) {
+            localStorage.setItem(cacheKey, JSON.stringify(result.articles));
+            return result.articles;
+        } else {
+            console.log("No Articles Found");
+            return [];
+        }
+        
     } catch (err) {
         console.log('Error:', err);
         return [];
