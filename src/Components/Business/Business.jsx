@@ -16,9 +16,9 @@ export default function Business() {
     }, [])
 
     useEffect(() => {
-        getNews({ category: 'business' }).then((articles) => {
-            setNews(articles);
-        });
+            getNews({ category: 'business' }).then((articles) => {
+                setNews(articles);
+            });
     }, []);
 
 
