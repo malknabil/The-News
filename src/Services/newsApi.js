@@ -1,7 +1,7 @@
 import axios from 'axios';
 
     const API_KEY = 'f56acf1f297e4169a052d27496d8a861';
-    const BASE_URL = 'https://newsapi.org/v2/top-headlines';
+    const BASE_URL = '/api/top-headlines';
 
 export const getNews = async (params = {}) => {
     const cacheKey = `news-${params.category || 'general'}`;
